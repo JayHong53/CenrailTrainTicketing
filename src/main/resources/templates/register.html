@@ -1,16 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
+<!-- <link rel="stylesheet" href="/css/styles.css">
+ --><meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<p>Register Page</p>
-	<form class='login-form' action="register" method="post">
-		<input type='text' placeholder='email' name="email" />
-		<input type="password" placeholder='password' name="password" />
-		<input type="password" placeholder='confirm password' name="confirmPassword" />
-		<button type="submit">Register</button>
-	</form>
-</body>
+	<div class="form-container">
+		<div class="form-box">
+			<div class="form-title">Register Page</div>
+			<form class='login-form' th:action="@{/register}" th:object="${passenger}" method="post">
+
+				<input type='text' th:field="*{email}" placeholder='email' name="email" />
+				<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span> <br>
+
+				<input type="password" th:field=*{password} placeholder='password' name="password" />
+				<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span> <br>
+
+				<input type="text" th:field=*{firstname} placeholder='firstname' name="firstname" />
+				<span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></span> <br>
+
+				<input type="text" th:field=*{lastname} placeholder='lastname' name="lastname" />
+				<span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span> <br>
+
+				<!-- Gender -->
+				<select th:field=*{gender}>
+					<option value="" th:text="Gender"></option>
+					<option value="Male" th:text="Male"></option>
+					<option value="Female" th:text="Female"></option>
+					<option value="X" th:text="X"></option>				
+				</select>
+				<span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span> <br>
+
+				<input type="number" th:field=*{age} placeholder="age" name="age" />
+				<span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span> <br>
+
+				<input type="text" th:field=*{phone} placeholder='111-222-3333' name="phone" />
+				<span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span> <br>
+
+				<input type="text" th:field=*{street} placeholder='street' name="street" />
+				<span th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></span> <br>
+
+				<input type="text" th:field=*{city} placeholder='city' name="city" />
+				<span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span> <br>
+
+				<!-- Province -->
+				<select th:field=*{province}>
+					<option value="" th:text="Province"></option>
+					<option value="AB" th:text="Alberta"></option>
+					<option value="BC" th:text="'British Columbia'"></option>
+					<option value="MB" th:text="Manitoba"></option>
+					<option value="NB" th:text="'New Brunswick'"></option>
+					<option value="NL" th:text="'Newfoundland and Labrador'"></option>
+					<option value="NT" th:text="'Northwest Territories'"></option>
+					<option value="NS" th:text="'Nova Scotia'"></option>
+					<option value="NU" th:text="Nunavut"></option>
+					<option value="ON" th:text="Ontario"></option>
+					<option value="PE" th:text="'Prince Edward Island'"></option>
+					<option value="QC" th:text="Quebec"></option>
+					<option value="SK" th:text="Saskatchewan"></option>					
+					<option value="YT" th:text="Yukon"></option>
+				</select>
+				<span th:if="${#fields.hasErrors('province')}" th:errors="*{province}"></span> <br>				
+
+				<input type="text" th:field=*{postal} placeholder='postal' name="postal" />
+				<span th:if="${#fields.hasErrors('postal')}" th:errors="*{postal}"></span> <br>
+
+
+				<button type="submit">Register</button>
+			</form>
+		</div>
+	</div>
+	<!-- 	<form action="#" th:action="@{/add}" th:object="${department}" method="post">
+
+    <label for="deptname">Department Name</label>
+
+    <input type="text" th:field="*{deptname}" id="deptname" placeholder="Department Name">
+
+    <span th:if="${#fields.hasErrors('deptname')}" th:errors="*{deptname}"></span>
+
+    </br>
+</body> -->
 </html>

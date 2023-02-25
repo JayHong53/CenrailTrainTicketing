@@ -2,9 +2,16 @@ package com.jiwoong.assignment2.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="Passenger")
@@ -13,42 +20,63 @@ public class Passenger {
 	// Login Credential
 	@Id
 	@Column(name="passengerId")
-	private int passengerId;
-	@NotNull
-	@Column(name="email", unique=true)
+	@GeneratedValue(strategy=GenerationType.UUID)
+	private String passengerId;
+	
+	@Column(name="email")
+	@NotNull(message="Please, provide your email")
+	@Email(message="Invalid Email format")
+	//(message="The email address is in use")
 	private String email;
-	@NotNull
+	
 	@Column(name="password")
+	@NotNull(message="Please enter your password")
+	@Size(min=8, message="Your password should be at least 8 letters")
 	private String password;
 	
 	// Personal Information
 	@Column(name="firstname")
+	@NotBlank(message="Enter your firstname")
 	private String firstname;
+
 	@Column(name="lastname")
+	@NotBlank(message="Enter your lastname")
 	private String lastname;
-	@Column(name="gender")
-	private String gender;
-//	@Column(name="age")
-//	private int age;
 	
-	// Contact and Address
+	@Column(name="gender")
+	@NotBlank(message="Please select your gender")
+	private String gender;
+
+	@Column(name="age")
+	@Min(value=1, message="Please enter a valid age")
+	private int age;
+	
 	@Column(name="phone")
+	@Pattern(regexp = "\\d{3}-\\d{3}-\\d{4}", message = "Phone number must be in the format XXX-XXX-XXXX")
 	private String phone;
+	
 	@Column(name="street")
+	@NotBlank(message="Please enter your street address")
 	private String street;
+	
 	@Column(name="city")
+	@NotBlank(message="Please enter your city")
 	private String city;
+	
 	@Column(name="province")
+	@NotBlank(message="Please choose your province")
 	private String province;
+	
 	@Column(name="postal")
+	@Pattern(regexp = "^[A-Za-z]\\d[A-Za-z][ -]?\\d[A-Za-z]\\d$", message = "Invalid Canadian postal code.")
 	private String postal;
 	
 	public Passenger() {
 		super();
 	}
 	
-	public Passenger(int passengerId, String email, String password, String firstname, String lastname, String gender,
-			/*int age,*/ String phone, String street, String city, String province, String postal) {
+	public Passenger(String passengerId, String email, String password, String firstname, String lastname, String gender,
+			int age, String phone, String street, String city, String province, String postal) {
 		super();
 		this.passengerId = passengerId;
 		this.email = email;
@@ -56,7 +84,7 @@ public class Passenger {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.gender = gender;
-//		this.age = age;
+		this.age = age;
 		this.phone = phone;
 		this.street = street;
 		this.city = city;
@@ -64,15 +92,10 @@ public class Passenger {
 		this.postal = postal;
 	}
 
-
-
-
-
-
-	public int getPassengerId() {
+	public String getPassengerId() {
 		return passengerId;
 	}
-	public void setPassengerId(int passengerId) {
+	public void setPassengerId(String passengerId) {
 		this.passengerId = passengerId;
 	}
 	public String getEmail() {
@@ -105,12 +128,12 @@ public class Passenger {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-//	public int getAge() {
-//		return age;
-//	}
-//	public void setAge(int age) {
-//		this.age = age;
-//	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
 	public String getPhone() {
 		return phone;
 	}

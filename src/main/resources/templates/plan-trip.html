@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Plan Your Trip</title>
+</head>
+<body>
+	<p>Plan Your Trip</p>
+	<div>
+	<form th:action="@{/{userId}/plan-trip(userId=${userId})}" th:object="${journey}" method="post">
+		<select th:field="*{departureStn}" name="departureStn">
+			<option th:value="Toronto" th:text="Toronto"></option>
+			<option th:value="Winnipeg" th:text="Winnipeg"></option>
+			<option th:value="Saskatoon" th:text="Saskatoon"></option>
+			<option th:value="Edmonton" th:text="Edmonton"></option>
+			<option th:value="Jasper" th:text="Jasper"></option>
+			<option th:value="Vancouver" th:text="Vancouver"></option>
+		</select>
+		<span th:if="${#fields.hasErrors('departureStn')}" th:errors="*{departureStn}"></span> <br>
+		
+		<select th:field="*{arrivalStn}" name="arrivalStn">
+			<option th:value="Vancouver" th:text="Vancouver" selected></option>
+			<option th:value="Jasper" th:text="Jasper"></option>
+			<option th:value="Edmonton" th:text="Edmonton"></option>
+			<option th:value="Saskatoon" th:text="Saskatoon"></option>
+			<option th:value="Winnipeg" th:text="Winnipeg"></option>
+			<option th:value="Toronto" th:text="Toronto"></option>
+		</select> <br>
+		
+		<input type="date" th:field="*{departureDate}" name="departureDate">
+		<span th:if="${#fields.hasErrors('departureDate')}" th:errors="*{departureDate}"></span> <br>
+		
+		<button type="submit">Plan Your Trip</button>
+		</form>
+	</div>
+</body>
+</html>

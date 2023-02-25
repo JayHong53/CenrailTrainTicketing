@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>DashBoard</title>
+</head>
+<body>
+	<p>How can we help you?</p>
+
+	<a th:href="@{/{userId}/plan-trip(userId=${userId})}">Plan Your Trip</a> <br>
+	<a th:href="@{/{userId}/user-profile(userId=${userId})}">View Profile</a>
+
+</body>
+</html>

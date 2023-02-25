@@ -103,12 +103,19 @@ public class TrainSchedule {
 		int arrivalCoordinate = stationCoordinate.get(arrival);
 		
 		// 
-		if (departureCoordinate - arrivalCoordinate >= 0) {
+		if (departureCoordinate - arrivalCoordinate <= 0) {
 			return westboundTrains;
 		}
 		else {
 			return eastboundTrains;
 		}
+	}
+	
+	public int getDistance(String departureStn, String arrivalStn) {
+		int from = stationCoordinate.get(departureStn);
+		int to = stationCoordinate.get(arrivalStn);
+		
+		return Math.abs(from - to);
 	}
 	
 	public String getDepartureTimeAndDate(String trainCode, String departureStn) {

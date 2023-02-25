@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<h3>Payment</h3>
+		<form th:action="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticketId})}" method="post">
+			<p th:text="${ticket.getTotalFare()}"></p>
+			
+			<input type="text" placeholder="Credit Card Number">
+			<input type="text" placeholder="Holder Name">
+			<input type="text" placeholder="Valid Date">
+			
+			<button onClick="submit">Pay Ticket</button>
+		</form>
+   </div>
+</body>
+</html>

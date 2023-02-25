@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<h3>Ticket Detail</h3>
+
+		<p th:text="${ticket}"></p>
+		
+		
+		<p>
+		<a th:href="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticket.getTicketId()})}">Pay Ticket</a>
+		</p>
+
+		<a th:href="@{/{userId}/ticket/(userId=${userId})}">Back to list</a>
+	</div>
+</body>
+</html>

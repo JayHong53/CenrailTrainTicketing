@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Plan Your Trip</title>
+</head>
+<body>
+	<p>Plan Your Trip</p>
+	<div>
+	
+		<!-- Train Not Selected -->
+		<div th:if="${trainCode == null}">
+			<form th:action="@{/{userId}/plan-trip-detail(userId=${userId})}" th:object="${journey}" method="post">
+				<input type="text" th:field="*{departureStn}" name="departureStn" th:value="${departureStn}" readonly>
+				<br>
+				
+				<input type="text" th:field="*{arrivalStn}" name="arrivalStn" th:value="${arrivalStn}" readonly>
+				<br>
+				
+				<input type="text" th:field="*{departureDate}" name="departureDate" th:value="${departureDate}" readonly>
+				
+				<select name="trainCode">
+					<option th:each="train: ${trainList}" th:value="${train}" th:text="${train}">
+				</select>
+				<br>
+				
+				<button type="reset">Reset</button>
+				<button type="submit">Get Ticket</button>
+
+				<p>TrainCode Not Set</p>
+
+			</form>
+		</div>
+		<div th:unless="${trainCode == null}">
+			<form th:action="@{/{userId}/plan-trip-summary(userId=${userId})}" th:object="${journey}" method="post">
+
+				<input type="text" th:field="*{trainCode}" name="trainCode" th:value="${trainCode}" readonly>
+				<br>
+
+				<!-- Departure Station, Date and Time -->
+				<input type="text" th:field="*{departureStn}" name="departureStn" th:value="${departureStn}" readonly>
+				<br>
+				
+				<input type="text" th:field="*{departureDate}" name="departureDate" readonly>
+				<br>
+
+				<!-- Arrival Station, Date and Time -->
+				<input type="text" th:field="*{arrivalStn}" name="arrivalStn" th:value="${arrivalStn}" readonly>
+				<br>
+				
+				<!-- Arrival Date -->
+
+				<!-- Additional Detail: Seat Class, Berth -->
+				<select name="seatClass">
+					<option value="Economy" th:text="Economy"></option>
+					<option value="Sleeper-Plus" th:text="Sleeper-Plus"></option>
+					<option value="Prestige" th:text="Prestige"></option>
+				</select>
+				
+
+				<!-- Additional Passenger (Adult) -->
+				<select name="extraSeat">
+					<option value=0>Additional Passengers</option>
+					<option value=0>None</option>			
+					<option value=1>1</option>
+					<option value=2>2</option>
+					<option value=3>3</option>
+					<option value=4>4</option>
+					<option value=5>5</option>
+					<option value=6>6</option>
+					<option value=7>7</option>
+				</select>
+
+				<!-- Additional Passenger (Children and Elders)-->
+				<select name="extraDiscountedSeat">
+					<option value=0>Discounted Passengers</option>
+					<option value=0>None</option>			
+					<option value=1>1</option>
+					<option value=2>2</option>
+					<option value=3>3</option>
+					<option value=4>4</option>
+					<option value=5>5</option>
+					<option value=6>6</option>
+					<option value=7>7</option>
+				</select>
+
+				<button type="reset">Reset</button>
+				<button type="submit">Get Ticket</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

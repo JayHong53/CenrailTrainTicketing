@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<h3>Ticket List</h3>
+
+		<table>
+			<thead>
+				<tr>
+					<th>From</th>
+					<th>To</th>
+					<th>Date</th>
+					<th>Status</th>
+					<th>View Ticket</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ticket:${tickets}">
+					<td th:text="${ticket.getJourney().getDepartureStn()}">From</td>
+					<td th:text="${ticket.getJourney().getArrivalStn()}">To</td>
+					<td th:text="${ticket.getJourney().getDepartureDate()}">Date</td>
+					<td th:text="${ticket.getStatus()}">status</td>
+					
+					
+					<td><a th:href="@{/{userId}/ticket/{ticketId}
+					(userId=${ticket.getPassenger().getPassengerId()},
+					ticketId=${ticket.getTicketId()})}">view ticket</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

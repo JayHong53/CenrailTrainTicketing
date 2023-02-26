@@ -65,7 +65,8 @@ public class JourneyController {
 	public String postPlanTrip(@PathVariable String userId, Model model, @Valid Journey journey, BindingResult result, String departureStn, String arrivalStn) {
 		// Validate route 
 		if (departureStn.equals(arrivalStn)) {
-			result.rejectValue("departureStn", "error.journey", "Invalid Journey");
+			result.rejectValue("departureStn", "error.journey", "Invalid Journey: Please pick a different station");
+			result.rejectValue("arrivalStn", "error.journey", "Invalid Journey: Please pick a different station");
 		}
 		
 		if (result.hasErrors()) {

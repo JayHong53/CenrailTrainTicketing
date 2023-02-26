@@ -2,13 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/styles.css">
 <title>DashBoard</title>
 </head>
 <body>
-	<p>How can we help you?</p>
 
-	<a th:href="@{/{userId}/plan-trip(userId=${userId})}">Plan Your Trip</a> <br>
-	<a th:href="@{/{userId}/user-profile(userId=${userId})}">View Profile</a>
+	<div class="header">
+		<div class="header-title">Welcome to CenRail</div>
+	</div>	
+
+	<div class="form-container">
+		<div class="form-box">
+			<div class="form-title">How can we help you?</div>
+			
+				<a th:href="@{/{userId}/plan-trip(userId=${userId})}"><button>Plan Your Trip</button></a> <br>
+				<a th:href="@{/{userId}/ticket/(userId=${userId})}"><button>View Tickets</button></a>
+				<a th:href="@{/{userId}/user-profile(userId=${userId})}"><button>Update Profile</button></a>
+
+		</div>
+	</div>
+
 
 </body>
 </html>

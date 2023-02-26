@@ -3,19 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/styles.css">
+
 </head>
 <body>
-	<div class="container">
-		<h3>Payment</h3>
-		<form th:action="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticketId})}" method="post">
-			<p th:text="${ticket.getTotalFare()}"></p>
+	<div class="form-container">
+		<div class="form-box">
+			<div class="form-title">Pay Your Tikcet</div>
 			
-			<input type="text" placeholder="Credit Card Number">
-			<input type="text" placeholder="Holder Name">
-			<input type="text" placeholder="Valid Date">
-			
-			<button onClick="submit">Pay Ticket</button>
-		</form>
+			<form th:action="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticketId})}" method="post">
+				<div class="result-fare" th:text="${ticket.getTotalFare()}"></div>		
+				<input type="text" placeholder="Credit Card Number">
+				<input type="text" placeholder="Holder Name">
+				<input type="text" placeholder="Valid Date">	
+				<button onClick="submit">Pay Ticket</button>
+			</form>
+
+		</div>
    </div>
 </body>
 </html>

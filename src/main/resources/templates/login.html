@@ -2,17 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/styles.css">
 <title>Login</title>
 </head>
 <body>
-	<div class="container">
-		<form class='login-form' action="login" method="post">
-			<input type='text' placeholder='email' name="email" />
-			<input type="password" placeholder='password' name="password" />
-			<button type="submit">Login</button>
-			<br>
-		</form>
-		<span class="error-msg" th:text="${errorMsg}"></span> <br> <a href="/register">Don's have an account? Register Here</a>
+	<div class="header">
+		<div class="header-title">Welcome to CenRail</div>
 	</div>
+
+	<div class="form-container">
+		<div class="form-box">
+			<div class="form-title">Login</div>
+			<form class='login-form' action="login" method="post">
+				<input type='text' placeholder='email' name="email" />
+				<input type="password" placeholder='password' name="password" />
+				<button type="submit">Login</button>
+				<div class="errorMessage-login" th:text="${errorMsg}"></div>
+			</form>
+		</div>
+		<!-- Register Link -->
+		<div class="register-link">
+			<a href="/register">Don's have an account? Register Here</a>
+		</div>
+	</div>
+	
 </body>
 </html>

@@ -1,4 +1,6 @@
 body {
+  margin: 0;
+  padding: 0;
   background: #41B3A3;
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -14,13 +16,17 @@ body {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: #FFFFFF;
-  font-size: 13px;
   padding: 10px;
 }
 
-/* Status bar */
-.tempStatus {
+.header-title {
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* register link */
+.register-link {
   color: #000000; 
   text-align: center;
 }
@@ -28,12 +34,83 @@ body {
 /* Form Styling  */
 .form-container {
   width: 400px;
-  margin: auto;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+
+/* table styling -start */
+
+.table-container {
+  width: 800px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.table-box {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 800px;
+  margin: 0 auto 15px;
+  padding: 0px 45px 45px 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 #00000020, 0 5px 5px 0 #00000025
+}
+
+.table-box table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-header {
+  background-color: #d3eeeb50;
+}
+
+.table-box th {
+  padding: 20px 15px;
+  background-color: #0D453E;
+  color: white;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.table-box td {
+  background-color: #0D453E20;
+  padding: 15px;
+  text-align: left;
+}
+
+.table-box tr {
+  margin: 15px 0px;
+}
+
+.table-box tr:nth-of-type(even) td{
+  background-color: #0D453E10;
+}
+
+.table-box button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #E27D60;
+  width: 100%;
+  border: 0;
+  padding: 10px 0px 10px 0px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+/* Table Styling -End */
+
+/* Form Styling start */
 .form-title {
   font-size: 25px;
-  padding: 30px 0px 25px 0px;
+  padding: 30px 0px 10px 0px;
 }
 
 .form-box {
@@ -41,13 +118,123 @@ body {
   z-index: 1;
   background: #FFFFFF;
   max-width: 400px;
-  margin: 0 auto 100px;
+  margin: 0 auto 15px;
   padding: 0px 45px 45px 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 #00000020, 0 5px 5px 0 #00000025
 }
 
-.form-box-review {
+.form-label {
+  position: absolute;
+  font-size: 13px;
+  margin-top: 31px;
+  margin-left: 15px;
+  color: #8e8e8e
+}
+
+.errorMessage-login {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 12px;
+  padding: 15px;
+  color: #FF0000;
+  margin-top: 0px;
+}
+
+.errorMessage-form {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 11px;
+  padding: 0px;
+  color: #FF0000;
+  margin-top: 0px;
+}
+
+/* Form input group styling */
+.form-box input, select, textarea {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #F0F0F0;
+  width: 100%;
+  border: 0;
+  margin: 15px 0px 0px 0px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 13px;
+  text-align: center;
+}
+
+.form-box input::placeholder {
+  text-align: left;
+}
+
+.form-box option {
+  text-align: center;
+}
+
+.form-box button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #E27D60;
+  width: 100%;
+  border: 0;
+  margin:15px 0px 0px 0px;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.result-fare {
+  font-size: 35px;
+  margin: 15px 0 15px;
+}
+
+/* Result Page Text Styling */
+
+/* #review-textarea {
+  height: 100px;
+  resize: none;
+  vertical-align: middle;
+} 
+
+.result-message {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.result-course {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.result-review-card {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.result-review {
+  font-size: 16px;
+  font-style: italic;
+  margin: 15px;
+}
+
+.result-user {
+  font-size: 12px;
+  font-style: italic;
+  margin-bottom: 10px;
+} */
+
+/* .form-box-review {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
@@ -67,86 +254,4 @@ body {
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 #00000020, 0 5px 5px 0 #00000025
-}
-
-.errorMessage {
-  position: absolute;
-  left:0;
-  right:0;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 12px;
-  color: #FF0000;
-  margin-top: 15px;
-}
-
-/* Form input group styling */
-input, select, textarea {
-  font-family: "Roboto", sans-serif;
-  outline: 0;
-  background: #F0F0F0;
-  width: 100%;
-  border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 13px;
-}
-
-#review-textarea {
-  height: 100px;
-  resize: none;
-  vertical-align: middle;
-}
-
-option {
-  text-align: center;
-}
-
-button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #E27D60;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
-
-/* Result Page Text Styling */
-.result-message {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.result-course {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.result-rating {
-  font-size: 35px;
-  margin: 15px 0 15px;
-}
-
-.result-review-card {
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.result-review {
-  font-size: 16px;
-  font-style: italic;
-  margin: 15px;
-}
-
-.result-user {
-  font-size: 12px;
-  font-style: italic;
-  margin-bottom: 10px;
-}
+} */

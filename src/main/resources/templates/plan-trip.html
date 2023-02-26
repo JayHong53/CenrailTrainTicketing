@@ -27,24 +27,30 @@
 					<option th:value="Jasper" th:text="Jasper"></option>
 					<option th:value="Vancouver" th:text="Vancouver"></option>
 				</select>
-				<div class="errorMessage-form" th:if="${#fields.hasErrors('departureStn')}" th:errors="*{departureStn}"></div>
+				<div class="errorMessage-form" th:if="${#fields.hasErrors('departureStn')}" th:errors="*{departureStn}">
+				</div>
 
 				<label class="form-label">Arrival</label>
 				<select th:field="*{arrivalStn}" name="arrivalStn">
-					<option th:value="Vancouver" th:text="'Arrival: Vancouver'" selected></option>
-					<option th:value="Jasper" th:text="'Arrival: Jasper'"></option>
-					<option th:value="Edmonton" th:text="'Arrival: Edmonton'"></option>
-					<option th:value="Saskatoon" th:text="'Arrival: Saskatoon'"></option>
-					<option th:value="Winnipeg" th:text="'Arrival: Winnipeg'"></option>
-					<option th:value="Toronto" th:text="'Arrival: Toronto'"></option>
+					<option th:value="Vancouver" th:text="'Vancouver'" selected></option>
+					<option th:value="Jasper" th:text="'Jasper'"></option>
+					<option th:value="Edmonton" th:text="'Edmonton'"></option>
+					<option th:value="Saskatoon" th:text="'Saskatoon'"></option>
+					<option th:value="Winnipeg" th:text="'Winnipeg'"></option>
+					<option th:value="Toronto" th:text="'Toronto'"></option>
 				</select> <br>
-				<div class="errorMessage-form" th:if="${#fields.hasErrors('arrivalStn')}" th:errors="*{arrivalStn}"></div>
+				<div class="errorMessage-form" th:if="${#fields.hasErrors('arrivalStn')}" th:errors="*{arrivalStn}">
+				</div>
 
+				<label class="form-label">Date</label>
 				<input type="date" th:field="*{departureDate}" name="departureDate">
-				<div class="errorMessage-form" th:if="${#fields.hasErrors('departureDate')}" th:errors="*{departureDate}"></div>
+				<div class="errorMessage-form" th:if="${#fields.hasErrors('departureDate')}"
+					th:errors="*{departureDate}"></div>
 
-				<button type="submit">Plan Your Trip</button>
+				<button class="form-button" type="submit">Plan Your Trip</button>
 			</form>
+			
+			<a th:href="@{/{userId}(userId = ${userId})}"><button class="form-button-cancel">Cancel</button></a>
 		</div>
 	</div>
 </body>

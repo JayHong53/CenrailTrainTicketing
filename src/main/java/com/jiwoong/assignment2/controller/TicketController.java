@@ -1,5 +1,6 @@
 package com.jiwoong.assignment2.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +38,10 @@ public class TicketController {
 			return "redirect:/";
 		}
 		
+		// Sort by the departure date
 		List<Ticket> tickets = ticketRepo.findAllByPassenger(passenger);
-		
-		System.out.println(tickets.size());
-		
+	    Collections.sort(tickets, (t1, t2) -> t1.getJourney().getDepartureDate().compareTo(t2.getJourney().getDepartureDate()));
+	
 		model.addAttribute("tickets", tickets);
 		
 		return "ticket-list";
@@ -72,7 +73,7 @@ public class TicketController {
 			
 			return "redirect:/{userId}/ticket/";			
 		}	
-		
+				
 		model.addAttribute("userId", userId);
 		model.addAttribute("ticketId", ticketId);
 		model.addAttribute("ticket", ticket);
@@ -80,18 +81,40 @@ public class TicketController {
 	}
 	
 	@PostMapping("/{ticketId}/payticket")
-	public String postPayTicket(@PathVariable String userId, @PathVariable String ticketId, Model model) {
+	public String postPayTicket(@PathVariable String userId, @PathVariable String ticketId, Model model, String creditCardNumber, String holderName, String validBefore) {
 		
 		// Invalid TicketId => Redirect to Ticket list
 		Ticket ticket = ticketRepo.findByTicketId(ticketId);
 		if (ticket == null) {
 			
 			return "redirect:/{userId}/ticket/";			
-		}			
+		}		
 		
-		ticket.setStatus("Paid");
-		ticketRepo.save(ticket);
+		boolean hasError = false;
 		
-		return "redirect:/{userId}/ticket/";
+	    if (!creditCardNumber.matches("\\d{16}")) {
+	    	model.addAttribute("errorMsgCredit", "Invalid Credit Card Number");
+	    	hasError = true;
+	    }
+	    
+	    if (!validBefore.matches("\\d{4}")) {
+	    	model.addAttribute("errorMsgValidBefore", "Invalid Date - Please follow the format YYMM");
+	    	hasError = true;
+	    }
+
+	    // if there's an error
+	    if (hasError) {
+			model.addAttribute("userId", userId);
+			model.addAttribute("ticketId", ticketId);
+			model.addAttribute("ticket", ticket);
+	    	
+			return "ticket-pay";
+	    }
+	    	    
+	    else {
+	    	ticket.setStatus("Paid");
+	    	ticketRepo.save(ticket);	
+	    	return "redirect:/{userId}/ticket/"; 
+		}
 	}
 }

@@ -8,14 +8,11 @@
 <body>
 	<div class="form-container">
 		<div class="form-box">
-			<div class="form-title">Register Page</div>
-			<form class='login-form' th:action="@{/register}" th:object="${passenger}" method="post">
+			<div class="form-title">Update Your Profile</div>
+			<form class='login-form' th:action="@{/{userId}/update-profile(userId = ${userId})}" th:object="${passenger}" method="post">
 
-				<input type='text' th:field="*{email}" placeholder='Email' name="email" required/>
+				<input type='text' th:field="*{email}" placeholder='Email' name="email" readonly/>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-
-				<input type="password" th:field=*{password} placeholder='Password' name="password" required/>
-				<div class="errorMessage-form" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 
 				<input type="text" th:field=*{firstname} placeholder='FirstName' name="firstname" required/>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
@@ -69,8 +66,9 @@
 				<input type="text" th:field=*{postal} placeholder='PostalCode' name="postal" required/>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('postal')}" th:errors="*{postal}"></div>
 
+				<button class=form-button type="submit">Update Profile</button>
 
-				<button class="form-button" type="submit">Register</button>
+				<a th:href="@{/{userId}(userId = ${userId})}"><button class="form-button-cancel">Cancel Update</button></a>
 			</form>
 		</div>
 	</div>

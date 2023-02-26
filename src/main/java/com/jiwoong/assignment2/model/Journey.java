@@ -132,6 +132,4 @@ public class Journey {
 		
 		return date;
 	}
-	
-	
 }

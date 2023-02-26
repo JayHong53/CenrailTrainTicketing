@@ -20,49 +20,48 @@
 			<!-- Train Not Selected -->
 			<div th:if="${trainCode == null}">
 				<form th:action="@{/{userId}/plan-trip-detail(userId=${userId})}" th:object="${journey}" method="post">
-					<input type="text" th:field="*{departureStn}" name="departureStn" th:value="${departureStn}"
-						readonly>
-					<br>
+					<label class="form-label">Departure</label>
+					<input type="text" th:field="*{departureStn}" name="departureStn" th:value="${departureStn}" readonly>
 
+					<label class="form-label">Arrival</label>
 					<input type="text" th:field="*{arrivalStn}" name="arrivalStn" th:value="${arrivalStn}" readonly>
-					<br>
 
-					<input type="text" th:field="*{departureDate}" name="departureDate" th:value="${departureDate}"
-						readonly>
+					<label class="form-label">Date</label>
+					<input type="text" th:field="*{departureDate}" name="departureDate" th:value="${departureDate}" readonly>
 
+					<label class="form-label">Train</label>
 					<select name="trainCode">
-						<option th:each="train: ${trainList}" th:value="${train}" th:text="${train}">
+						<option th:each="train: ${trainList}" th:value="${train}" th:text="${train} + ' (' + ${trainSchedule.getDepartureTime(train, journey.getDepartureStn())} + ')'"></option>
 					</select>
-					<br>
 
-					<button type="reset">Reset</button>
-					<button type="submit">Get Ticket</button>
-
-					<p>TrainCode Not Set</p>
+					<button class="form-button" type="reset">Reset</button>
+					<button class="form-button" type="submit">Get Ticket</button>
 
 				</form>
 			</div>
+
+			<!-- Train Selected -->
 			<div th:unless="${trainCode == null}">
 				<form th:action="@{/{userId}/plan-trip-summary(userId=${userId})}" th:object="${journey}" method="post">
-
+					
+					<label class="form-label">TrainCode</label>
 					<input type="text" th:field="*{trainCode}" name="trainCode" th:value="${trainCode}" readonly>
-					<br>
 
-					<!-- Departure Station, Date and Time -->
-					<input type="text" th:field="*{departureStn}" name="departureStn" th:value="${departureStn}"
-						readonly>
-					<br>
-
-					<input type="text" th:field="*{departureDate}" name="departureDate" readonly>
-					<br>
-
-					<!-- Arrival Station, Date and Time -->
+					<!-- Departure Station, Arrival Station -->
+					<label class="form-label">Departure</label>
+					<input type="text" th:field="*{departureStn}" name="departureStn" th:value="${departureStn}" readonly>
+					
+					<label class="form-label">Arrival</label>
 					<input type="text" th:field="*{arrivalStn}" name="arrivalStn" th:value="${arrivalStn}" readonly>
-					<br>
+					
+					<!-- Date and Time  -->
+					<input type="text" th:field="*{departureDate}" name="departureDate" hidden>
+					<label class="form-label">Date</label>
+					<input type="text" th:value="${journey.getDepartureDate()} + ' ' + ${trainSchedule.getDepartureTime(trainCode, journey.getDepartureStn())}" readonly>
 
-					<!-- Arrival Date -->
 
 					<!-- Additional Detail: Seat Class, Berth -->
+					<label class="form-label">SeatClass</label>
 					<select name="seatClass">
 						<option value="Economy" th:text="Economy"></option>
 						<option value="Sleeper-Plus" th:text="Sleeper-Plus"></option>
@@ -96,8 +95,10 @@
 						<option value=7>7</option>
 					</select>
 
-					<button type="reset">Reset</button>
-					<button type="submit">Get Ticket</button>
+					<button class="form-button" type="submit">Get Ticket</button>
+					<button class="form-button-cancel" type="reset">Reset</button>
+					<a th:href="@{/{userId}(userId = ${userId})}"><button class="form-button-cancel">Cancel</button></a>
+
 				</form>
 			</div>
 		</div>

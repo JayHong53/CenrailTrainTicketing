@@ -18,9 +18,11 @@
 			
 			<p th:text="${ticket}"></p>
 			
-			
-			<a th:href="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticket.getTicketId()})}"><button>Pay Ticket</button></a>		
-			<a th:href="@{/{userId}/ticket/(userId=${userId})}"><button>Back to List</button></a>
+			<!-- If the ticket is not paid, show the payment option -->
+			<div th:if="${ticket.status == 'Not Paid'}">
+				<a th:href="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticket.getTicketId()})}"><button class="form-button">Pay Ticket</button></a>		
+			</div>
+			<a th:href="@{/{userId}/plan-trip(userId=${userId})}"><button class="form-button">Plan Your Trip</button></a> <br>
 
 		</div>
 	</div>

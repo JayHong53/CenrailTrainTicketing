@@ -2,9 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/css/styles.css">
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/styles.css">
 
 </head>
 
@@ -16,30 +16,45 @@
 	<div class="table-container">
 		<div class="table-box">
 			<div class="form-title">Ticket List</div>
-			<table>
-				<thead>
-					<tr>
-						<th>Train</th>
-						<th>From</th>
-						<th>To</th>
-						<th>Departure Date</th>
-						<th>Status</th>
-						<th>View Ticket</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="ticket:${tickets}">
-						<td th:text="${ticket.getJourney().getTrainCode()}">TrainCode</td>
-						<td th:text="${ticket.getJourney().getDepartureStn()}">From</td>
-						<td th:text="${ticket.getJourney().getArrivalStn()}">To</td>
-						<td th:text="${ticket.getJourney().getDepartureDate()}">Date</td>
-						<td th:text="${ticket.getStatus()}">status</td>
-						<td><a th:href="@{/{userId}/ticket/{ticketId}
-							(userId=${ticket.getPassenger().getPassengerId()},
-							ticketId=${ticket.getTicketId()})}"><button>view ticket</button></a></td>
-					</tr>
-				</tbody>
-			</table>
+			
+			<!-- if a user has at least 1 ticket; -->
+			<div th:if="${!tickets.isEmpty()}">
+				<table>
+					<thead>
+						<tr>
+							<th>Train</th>
+							<th>From</th>
+							<th>To</th>
+							<th>Departure Date</th>
+							<th>Status</th>
+							<th>View Ticket</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="ticket:${tickets}">
+							<td th:text="${ticket.getJourney().getTrainCode()}">TrainCode</td>
+							<td th:text="${ticket.getJourney().getDepartureStn()}">From</td>
+							<td th:text="${ticket.getJourney().getArrivalStn()}">To</td>
+							<td th:text="${ticket.getJourney().getDepartureDate()}">Date</td>
+							<td th:text="${ticket.getStatus()}">status</td>
+							<td><a th:href="@{/{userId}/ticket/{ticketId}
+								(userId=${ticket.getPassenger().getPassengerId()},
+								ticketId=${ticket.getTicketId()})}"><button class="table-box-button">view ticket</button></a></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<a th:href="@{/{userId}(userId = ${userId})}"><button class="form-button-cancel">Back to main</button></a>
+
+			</div>
+			<div th:unless="${!tickets.isEmpty()}">
+
+					<div class="form-message-empty">You have no ticket</div>
+
+					<a th:href="@{/{userId}/plan-trip(userId=${userId})}"><button class="form-button">Plan Your Trip</button></a><br>
+					<a th:href="@{/{userId}(userId = ${userId})}"><button class="form-button-cancel">Back to main</button></a>
+
+			</div>
 		</div>
 	</div>
 </body>

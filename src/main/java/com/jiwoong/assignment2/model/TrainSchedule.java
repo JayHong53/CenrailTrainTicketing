@@ -95,7 +95,7 @@ public class TrainSchedule {
 		eb502.put("Saskatoon", "Day 3, 11:57");
 		eb502.put("Winnipeg", "Day 4, 04:30");		
 		eb502.put("Toronto", "Day 5, 19:29");
-		trainSchedule.put("EastBound 501", eb501);
+		trainSchedule.put("EastBound 502", eb502);
 	}
 		
 	public List<String> getTrainList(String departure, String arrival){
@@ -118,8 +118,13 @@ public class TrainSchedule {
 		return Math.abs(from - to);
 	}
 	
-	public String getDepartureTimeAndDate(String trainCode, String departureStn) {
-		return "";
+	public String getDepartureTime(String trainCode, String departureStn) {
+		// Get TrainSchedule
+		HashMap<String, String> timeTable = trainSchedule.get(trainCode);
+		String departureTime = timeTable.get(departureStn);
+		
+		// Return just time part
+		return departureTime.substring(7);
 	}
 	
 	public String getArrivalTimeAndDate(String trainCode, String arrivalStn) {

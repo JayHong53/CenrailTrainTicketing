@@ -1,5 +1,7 @@
 package com.jiwoong.assignment2.model;
 
+import java.text.DecimalFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -148,6 +150,17 @@ public class Ticket {
 		
 		return ( basicFare * seatCount ) + ( basicFare * 0.85 * discountedSeatCount );
 	}
+	
+	// Return total fare in currency format; 
+	public String getTotalFareCurrencyFormat() {
+		// Round up to 2 decimal point;
+		DecimalFormat formatter = new DecimalFormat("0.00");
+		return formatter.format(this.totalFare);
+	}
+	
+//	public String getDepartureDateAndTime(String time) {
+//		
+//	}
 
 	@Override
 	public String toString() {

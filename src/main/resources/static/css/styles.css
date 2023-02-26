@@ -63,6 +63,7 @@ body {
 .table-box table {
   width: 100%;
   border-collapse: collapse;
+  margin: 15px 0px 0px 0px;
 }
 
 .table-header {
@@ -75,12 +76,14 @@ body {
   color: white;
   text-transform: uppercase;
   text-align: left;
+  font-size: 13px;
 }
 
 .table-box td {
   background-color: #0D453E20;
   padding: 15px;
   text-align: left;
+  font-size: 14px;
 }
 
 .table-box tr {
@@ -91,7 +94,7 @@ body {
   background-color: #0D453E10;
 }
 
-.table-box button {
+.table-box-button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -100,11 +103,12 @@ body {
   border: 0;
   padding: 10px 0px 10px 0px;
   color: #FFFFFF;
-  font-size: 14px;
+  font-size: 12px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
 }
+
 /* Table Styling -End */
 
 /* Form Styling start */
@@ -178,12 +182,31 @@ body {
   text-align: center;
 }
 
-.form-box button {
+
+.form-button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #E27D60;
   width: 100%;
+  max-width: 310px;
+  border: 0;
+  margin:15px 0px 0px 0px;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form-button-cancel {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #b62c05;
+  width: 100%;
+  max-width: 310px;
   border: 0;
   margin:15px 0px 0px 0px;
   padding: 15px;

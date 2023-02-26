@@ -75,12 +75,6 @@ public class PassengerController {
 	@PostMapping("/register")
 	public String postRegister(@Valid Passenger passenger, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			
-			//
-			for (ObjectError err : result.getAllErrors()) {
-				System.out.println(err);
-			}
-			
 			return "register";
 		} else {
 			// Check if email is already taken

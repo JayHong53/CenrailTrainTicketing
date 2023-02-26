@@ -7,16 +7,27 @@
 
 </head>
 <body>
+	<div class="header">
+		<div class="header-title">Welcome to CenRail</div>
+	</div>	
+
 	<div class="form-container">
 		<div class="form-box">
 			<div class="form-title">Pay Your Tikcet</div>
 			
 			<form th:action="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticketId})}" method="post">
-				<div class="result-fare" th:text="${ticket.getTotalFare()}"></div>		
-				<input type="text" placeholder="Credit Card Number">
-				<input type="text" placeholder="Holder Name">
-				<input type="text" placeholder="Valid Date">	
-				<button onClick="submit">Pay Ticket</button>
+				<div class="result-fare" th:text="'$ '+ ${ticket.getTotalFareCurrencyFormat()}" ></div>		
+
+				<input type="text" name="creditCardNumber" placeholder="Credit Card Number" maxlength="16" required>
+				<div class="errorMessage-form" th:text="${errorMsgCredit}"></div>
+
+				<input type="text" name="holderName" placeholder="Holder Name" required>
+				<div class="errorMessage-form" th:text="${errorMsgName}"></div>
+
+				<input type="text" name="validBefore" placeholder="Valid Before (YYMM)" maxlength="4" required>
+				<div class="errorMessage-form" th:text="${errorMsgValidBefore}" ></div>
+	
+				<button class="form-button" onClick="submit">Pay Ticket</button>
 			</form>
 
 		</div>

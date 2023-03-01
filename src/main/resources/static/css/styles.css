@@ -25,30 +25,35 @@ body {
   font-weight: 500;
 }
 
-/* register link */
-.register-link {
-  color: #000000; 
-  text-align: center;
-}
-
-/* Form Styling  */
-.form-container {
+/* Containers */
+.container-small {
   width: 400px;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
 }
 
+.container-medium {
+  width: 600px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-/* table styling -start */
-
-.table-container {
+.container-large {
   width: 800px;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
 }
 
+/* register link */
+.register-link {
+  color: #000000; 
+  text-align: center;
+}
+
+/* table styling -start */
 .table-box {
   position: relative;
   z-index: 1;
@@ -220,6 +225,18 @@ body {
 .result-fare {
   font-size: 35px;
   margin: 15px 0 15px;
+}
+
+.message-large {
+  padding: 50px 30px 10px 30px;
+  font-size: 32px;
+  font-style: italic;
+}
+
+.message-small {
+  padding-bottom: 15px;
+  font-size: 16px;
+  font-style: italic;
 }
 
 /* Result Page Text Styling */

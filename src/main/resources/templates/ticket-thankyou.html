@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/styles.css">
+
+</head>
+<body>
+
+	<div class="header">
+		<div class="header-title">Payment Completed</div>
+	</div>
+
+	<div class="container-medium">
+		<div class="table-box">
+			<div class="message-large">Thank you for choosing CenRail</div>
+			<div class="message-small">We hope you have a pleasant journey!</div>
+			
+			<a th:href="@{/{userId}(userId=${userId})}"><button class="form-button">Back to main</button></a>
+		</div>
+	</div>
+
+</body>
+</html>

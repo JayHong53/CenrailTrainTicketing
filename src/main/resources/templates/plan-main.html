@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/styles.css">
-<title>DashBoard</title>
+<title>Welcome to CenRail</title>
 </head>
 <body>
 
@@ -11,14 +11,15 @@
 		<div class="header-title">Welcome to CenRail</div>
 	</div>	
 
-	<div class="form-container">
+	<div class="container-medium">
 		<div class="form-box">
-			<div class="form-title">How can we help you?</div>
+			<div class="message-large" th:text="'Welcome back, ' + ${passenger.getFirstname()} + '!'">Welcome Back</div>
+			<div class="message-small">How may we help you today?</div>
 			
 				<a th:href="@{/{userId}/plan-trip(userId=${userId})}"><button class="form-button">Plan Your Trip</button></a> <br>
 				<a th:href="@{/{userId}/ticket/(userId=${userId})}"><button class="form-button">View Tickets</button></a>
 				<a th:href="@{/{userId}/update-profile(userId=${userId})}"><button class="form-button">Update Profile</button></a>
-
+				<a th:href="@{/}"><button class="form-button-cancel">Logout</button></a>
 		</div>
 	</div>
 

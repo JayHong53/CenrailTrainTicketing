@@ -13,7 +13,7 @@
 		<div class="header-title">Welcome to CenRail</div>
 	</div>
 
-	<div class="form-container">
+	<div class="container-small">
 		<div class="form-box">
 			<div class="form-title">Plan Your Trip</div>
 
@@ -34,10 +34,10 @@
 						<option th:each="train: ${trainList}" th:value="${train}" th:text="${train} + ' (' + ${trainSchedule.getDepartureTime(train, journey.getDepartureStn())} + ')'"></option>
 					</select>
 
-					<button class="form-button" type="reset">Reset</button>
-					<button class="form-button" type="submit">Get Ticket</button>
-
+					<button class="form-button" type="submit">Plan Your Trip</button>
 				</form>
+
+				<a th:href="@{/{userId}(userId = ${userId})}"><button class="form-button-cancel">Cancel</button></a>
 			</div>
 
 			<!-- Train Selected -->
@@ -96,7 +96,6 @@
 					</select>
 
 					<button class="form-button" type="submit">Get Ticket</button>
-					<button class="form-button-cancel" type="reset">Reset</button>
 					<a th:href="@{/{userId}(userId = ${userId})}"><button class="form-button-cancel">Cancel</button></a>
 
 				</form>

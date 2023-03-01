@@ -1,7 +1,12 @@
 package com.jiwoong.assignment2.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -127,8 +132,35 @@ public class TrainSchedule {
 		return departureTime.substring(7);
 	}
 	
-	public String getArrivalTimeAndDate(String trainCode, String arrivalStn) {
-		return "";
-	}
-	
+	// will return a map with values of Strings of journey
+	// [departureStn, departureDate, departureTime, arrivalStn, arrivalDate, arrivalTime]
+	public HashMap<String, String> getDetailedJourneyStringMap(Journey journey) {
+		HashMap<String, String> journeyStringMap = new HashMap<>();
+		
+		// Put Station Info and TrainCode
+		journeyStringMap.put("departureStn", journey.getDepartureStn());
+		journeyStringMap.put("arrivalStn", journey.getArrivalStn());
+		journeyStringMap.put("trainCode", journey.getTrainCode());
+		
+		HashMap<String, String> timeTable = trainSchedule.get(journey.getTrainCode());
+		String departureTime = timeTable.get(journey.getDepartureStn());
+		String arrivalTime = timeTable.get(journey.getArrivalStn());		
+		
+		journeyStringMap.put("departureTime", departureTime.substring(7));
+		journeyStringMap.put("arrivalTime", arrivalTime.substring(7));
+		
+		int day = Integer.parseInt(arrivalTime.substring(4, 5)) - 1;
+		
+		LocalDate departureDate = journey.getDepartureDate();
+		LocalDate arrivalDate = departureDate.plusDays(day);
+		
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd EEE");
+		String departureDateString = dateFormat.format(departureDate);
+		String arrivalDateString = dateFormat.format(arrivalDate);
+
+		journeyStringMap.put("departureDate", departureDateString);
+		journeyStringMap.put("arrivalDate", arrivalDateString);
+		
+		return journeyStringMap;
+	}	
 }

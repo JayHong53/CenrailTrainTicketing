@@ -43,8 +43,17 @@ public class JourneyController {
 //	=================================================	
 	@GetMapping
 	public String getMain(@PathVariable String userId, Model model) {
-		model.addAttribute("userId", userId);
-		return "plan-main";
+		
+		Passenger passenger = passengerRepo.findByPassengerId(userId);
+		if (passenger == null) {
+			return "redirect:/";
+		}
+		
+		else {
+			model.addAttribute("passenger", passenger);
+			model.addAttribute("userId", userId);
+			return "plan-main";
+		}
 	}
 
 //	=================================================

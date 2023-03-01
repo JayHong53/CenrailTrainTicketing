@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Ticket Detail</title>
 <link rel="stylesheet" href="/css/styles.css">
 
 </head>
@@ -12,17 +12,29 @@
 		<div class="header-title">Welcome to CenRail</div>
 	</div>
 
-	<div class="form-container">
+	<div class="container-small">
 		<div class="form-box">
 			<div class="form-title">Ticket Detail</div>
+
+			<div th:text="${passenger.getFirstname()} + ' ' + ${passenger.getLastname()}"></div>
+
+			<div th:text="${journeyInfo.get('trainCode')}"></div>
 			
-			<p th:text="${ticket}"></p>
+			<div th:text="${journeyInfo.get('departureStn')}"></div>
+			<div th:text="${journeyInfo.get('departureDate')} + ' ' + ${journeyInfo.get('departureTime')}"></div>
+			
+			<div th:text="${journeyInfo.get('arrivalStn')}"></div>
+			<div th:text="${journeyInfo.get('arrivalDate')} + ' ' + ${journeyInfo.get('arrivalTime')}"></div>
+
+			<div th:text="'CAD ' + ${ticket.getTotalFareCurrencyFormat()}"></div>
+			<div th:text="'Status: ' + ${ticket.getStatus()}"></div>
 			
 			<!-- If the ticket is not paid, show the payment option -->
 			<div th:if="${ticket.status == 'Not Paid'}">
 				<a th:href="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticket.getTicketId()})}"><button class="form-button">Pay Ticket</button></a>		
 			</div>
-			<a th:href="@{/{userId}/plan-trip(userId=${userId})}"><button class="form-button">Plan Your Trip</button></a> <br>
+
+			<a th:href="@{/{userId}/ticket/(userId=${userId})}"><button class="form-button-cancel">Back to list</button></a>
 
 		</div>
 	</div>

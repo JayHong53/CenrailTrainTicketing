@@ -8,15 +8,15 @@
 </head>
 <body>
 	<div class="header">
-		<div class="header-title">Welcome to CenRail</div>
+		<div class="header-title">Pay Ticket</div>
 	</div>	
 
-	<div class="form-container">
+	<div class="container-small">
 		<div class="form-box">
-			<div class="form-title">Pay Your Tikcet</div>
+			<div class="form-title">Pay Your Ticket</div>
 			
 			<form th:action="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticketId})}" method="post">
-				<div class="result-fare" th:text="'$ '+ ${ticket.getTotalFareCurrencyFormat()}" ></div>		
+				<div class="result-fare" th:text="'CAD '+ ${ticket.getTotalFareCurrencyFormat()}" ></div>		
 
 				<input type="text" name="creditCardNumber" placeholder="Credit Card Number" maxlength="16" required>
 				<div class="errorMessage-form" th:text="${errorMsgCredit}"></div>
@@ -24,12 +24,21 @@
 				<input type="text" name="holderName" placeholder="Holder Name" required>
 				<div class="errorMessage-form" th:text="${errorMsgName}"></div>
 
-				<input type="text" name="validBefore" placeholder="Valid Before (YYMM)" maxlength="4" required>
-				<div class="errorMessage-form" th:text="${errorMsgValidBefore}" ></div>
+				<div class="form-label">Valid Before</div>
+				<select name="validBeforeYear">
+					<option th:each="year: ${years}" th:value="${year}" th:text="${year}"></option>
+				</select>
+
+				<div class="form-label">Valid Before</div>
+				<select name="validBeforeMonth">
+					<option th:each="month: ${months}" th:value="${month}" th:text="${month}"></option>
+				</select>
+
 	
 				<button class="form-button" onClick="submit">Pay Ticket</button>
 			</form>
-
+			
+			<a th:href="@{/{userId}/ticket/{ticketId}(userId=${userId}, ticketId=${ticketId})}" ><button class="form-button-cancel">Not Now</button></a>
 		</div>
    </div>
 </body>

@@ -6,18 +6,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="form-container">
+	<div class="container-small">
 		<div class="form-box">
-			<div class="form-title">Update Your Profile</div>
+			<div class="form-title">Update Profile</div>
 			<form class='login-form' th:action="@{/{userId}/update-profile(userId = ${userId})}" th:object="${passenger}" method="post">
 
-				<input type='text' th:field="*{email}" placeholder='Email' name="email" readonly/>
+				<div class="form-label">Email</div>
+				<input type='text' th:field="*{email}" name="email" readonly/>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-
-				<input type="text" th:field=*{firstname} placeholder='FirstName' name="firstname" required/>
+				
+				<div class="form-label">Firstname</div>
+				<input type="text" th:field=*{firstname} name="firstname" required/>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
 
-				<input type="text" th:field=*{lastname} placeholder='LastName' name="lastname" required/>
+				<div class="form-label">Lastname</div>
+				<input type="text" th:field=*{lastname} name="lastname" required/>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
 
 				<!-- Gender -->
@@ -34,13 +37,16 @@
 				<input type="number" th:field=*{age} name="age" required/>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
 
-				<input type="text" th:field=*{phone} placeholder='Phone - ex)111-222-3333' name="phone" required/>
+				<div class="form-label">Phone</div>
+				<input type="text" th:field=*{phone} name="phone" required/>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
 
-				<input type="text" th:field=*{street} placeholder='StreetAddress' name="street" required/>
+				<div class="form-label">Street</div>
+				<input type="text" th:field=*{street} name="street" required/>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></div>
 
-				<input type="text" th:field=*{city} placeholder='City' name="city" required/>
+				<div class="form-label">City</div>
+				<input type="text" th:field=*{city} name="city" required/>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></div>
 
 				<!-- Province -->
@@ -63,7 +69,8 @@
 				</select>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('province')}" th:errors="*{province}"></div>				
 
-				<input type="text" th:field=*{postal} placeholder='PostalCode' name="postal" required/>
+				<div class="form-label">Postal</div>
+				<input type="text" th:field=*{postal} name="postal" required/>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('postal')}" th:errors="*{postal}"></div>
 
 				<button class=form-button type="submit">Update Profile</button>

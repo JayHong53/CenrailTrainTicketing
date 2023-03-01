@@ -1,6 +1,7 @@
 package com.jiwoong.assignment2.controller;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jiwoong.assignment2.model.Passenger;
 import com.jiwoong.assignment2.model.Ticket;
+import com.jiwoong.assignment2.model.TrainSchedule;
 import com.jiwoong.assignment2.repository.JourneyRepository;
 import com.jiwoong.assignment2.repository.PassengerRepository;
 import com.jiwoong.assignment2.repository.TicketRepository;
@@ -27,8 +29,7 @@ public class TicketController {
 	private JourneyRepository journeyRepo;
 	@Autowired
 	private TicketRepository ticketRepo;
-	
-	
+		
 	@GetMapping("/")
 	public String getTicketList(@PathVariable String userId, Model model) {
 		
@@ -56,8 +57,14 @@ public class TicketController {
 			
 			return "redirect:/{userId}/ticket/";
 				
-		}		
+		}	
 		
+		
+		TrainSchedule trainSchedule = new TrainSchedule();
+		HashMap<String, String> journeyInfo = trainSchedule.getDetailedJourneyStringMap(ticket.getJourney());
+		
+		model.addAttribute("passenger", ticket.getPassenger());
+		model.addAttribute("journeyInfo", journeyInfo);
 		model.addAttribute("ticket", ticket);
 		model.addAttribute("userId", userId);
 		
@@ -73,15 +80,24 @@ public class TicketController {
 			
 			return "redirect:/{userId}/ticket/";			
 		}	
-				
+		
+		int[] years = new int[20];
+		for (int i = 0; i < 20; i++) {
+			years[i] = 2023 + i;
+		}
+		String[] months = {"01","02","03","04","05","06","07","08","09","10","11","12"};
+		
+		model.addAttribute("years", years);
+		model.addAttribute("months", months);
 		model.addAttribute("userId", userId);
 		model.addAttribute("ticketId", ticketId);
 		model.addAttribute("ticket", ticket);
+		
 		return "ticket-pay";
 	}
 	
 	@PostMapping("/{ticketId}/payticket")
-	public String postPayTicket(@PathVariable String userId, @PathVariable String ticketId, Model model, String creditCardNumber, String holderName, String validBefore) {
+	public String postPayTicket(@PathVariable String userId, @PathVariable String ticketId, Model model, String creditCardNumber, String holderName) {
 		
 		// Invalid TicketId => Redirect to Ticket list
 		Ticket ticket = ticketRepo.findByTicketId(ticketId);
@@ -97,13 +113,17 @@ public class TicketController {
 	    	hasError = true;
 	    }
 	    
-	    if (!validBefore.matches("\\d{4}")) {
-	    	model.addAttribute("errorMsgValidBefore", "Invalid Date - Please follow the format YYMM");
-	    	hasError = true;
-	    }
-
 	    // if there's an error
 	    if (hasError) {
+	    	// Return 
+	    	int[] years = new int[20];
+			for (int i = 0; i < 20; i++) {
+				years[i] = 2023 + i;
+			}
+			String[] months = {"01","02","03","04","05","06","07","08","09","10","11","12"};
+			
+			model.addAttribute("years", years);
+			model.addAttribute("months", months);
 			model.addAttribute("userId", userId);
 			model.addAttribute("ticketId", ticketId);
 			model.addAttribute("ticket", ticket);
@@ -113,8 +133,10 @@ public class TicketController {
 	    	    
 	    else {
 	    	ticket.setStatus("Paid");
-	    	ticketRepo.save(ticket);	
-	    	return "redirect:/{userId}/ticket/"; 
+	    	ticketRepo.save(ticket);
+	    	
+	    	model.addAttribute("userId", userId);
+	    	return "ticket-thankyou"; 
 		}
 	}
 }

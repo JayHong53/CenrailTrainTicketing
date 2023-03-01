@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>Ticket List</title>
 	<link rel="stylesheet" href="/css/styles.css">
 
 </head>
@@ -13,7 +13,7 @@
 		<div class="header-title">Welcome to CenRail</div>
 	</div>
 
-	<div class="table-container">
+	<div class="container-large">
 		<div class="table-box">
 			<div class="form-title">Ticket List</div>
 			
@@ -49,7 +49,7 @@
 			</div>
 			<div th:unless="${!tickets.isEmpty()}">
 
-					<div class="form-message-empty">You have no ticket</div>
+					<div class="message-small">You have no tickets</div>
 
 					<a th:href="@{/{userId}/plan-trip(userId=${userId})}"><button class="form-button">Plan Your Trip</button></a><br>
 					<a th:href="@{/{userId}(userId = ${userId})}"><button class="form-button-cancel">Back to main</button></a>

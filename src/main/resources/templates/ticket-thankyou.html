@@ -20,7 +20,9 @@
 				<div class="message-small">We hope you have a pleasant journey!</div>
 			</div>
 			
-			<a th:href="@{/{userId}(userId=${userId})}"><button class="form-button">Back to main</button></a>
+			<a th:href="@{/{userId}/ticket/{ticketId}(userId=${userId}, ticketId=${ticketId})}"><button class="form-button">View Your Ticket</button></a>
+			<a th:href="@{/{userId}/ticket/(userId=${userId})}"><button class="form-button">See Ticket List</button></a>
+			<a th:href="@{/{userId}(userId=${userId})}"><button class="form-button-cancel">Back to main</button></a>
 		</div>
 	</div>
 

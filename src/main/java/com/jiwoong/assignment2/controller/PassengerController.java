@@ -42,7 +42,7 @@ public class PassengerController {
 		else {
 			Passenger existingPassenger = passengerRepo.findByEmail(email);		
 			if (existingPassenger == null) {
-				model.addAttribute("errorMsg", "User not exist");
+				model.addAttribute("errorMsg", "User not existing");
 				return "login";
 				
 			}

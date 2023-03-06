@@ -44,6 +44,7 @@ public class Ticket {
 	@Column(name="status")
 	private String status;
 	
+	// Constructors 
 	public Ticket() {
 		super();
 	}
@@ -61,6 +62,7 @@ public class Ticket {
 		this.status = status;
 	}
 
+	// Getters and Setters 
 	public String getTicketId() {
 		return ticketId;
 	}
@@ -125,6 +127,7 @@ public class Ticket {
 		this.status = status;
 	}
 	
+	// Fare calculation
 	public double calculateTotalFare() {
 		// Basic fare = distance of travel * 0.1
 		double basicFare = this.journey.getTravelDistance() * 0.1;
@@ -158,10 +161,7 @@ public class Ticket {
 		return formatter.format(this.totalFare);
 	}
 	
-//	public String getDepartureDateAndTime(String time) {
-//		
-//	}
-
+	// ToString method
 	@Override
 	public String toString() {
 		return "Ticket [ticketId=" + ticketId + ", journey=" + journey + ", passenger=" + passenger + ", seatClass="

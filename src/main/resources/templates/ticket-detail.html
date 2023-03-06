@@ -2,9 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Ticket Detail</title>
-	<link rel="stylesheet" href="/css/styles.css">
+<meta charset="UTF-8">
+<title>Ticket Detail</title>
+<link rel="stylesheet" href="/css/styles.css">
 
 </head>
 
@@ -25,14 +25,11 @@
 
 						<div class="route-label">Depart</div>
 						<div class="station" th:text="${journeyInfo.get('departureStn')}"></div>
-						<div class="time"
-							th:text="${journeyInfo.get('departureDate')} + ' ' + ${journeyInfo.get('departureTime')}">
-						</div>
+						<div class="time" th:text="${journeyInfo.get('departureDate')} + ' ' + ${journeyInfo.get('departureTime')}"></div>
 
 						<div class="route-label">Arrive</div>
 						<div class="station" th:text="${journeyInfo.get('arrivalStn')}"></div>
-						<div class="time"
-							th:text="${journeyInfo.get('arrivalDate')} + ' ' + ${journeyInfo.get('arrivalTime')}"></div>
+						<div class="time" th:text="${journeyInfo.get('arrivalDate')} + ' ' + ${journeyInfo.get('arrivalTime')}"></div>
 
 						<div class="train-image">
 							<img src="/image/metro.png">
@@ -68,12 +65,17 @@
 
 			<!-- If the ticket is not paid, show the payment option -->
 			<div th:if="${ticket.status == 'Not Paid'}">
-				<a
-					th:href="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticket.getTicketId()})}"><button
-						class="form-button">Pay Ticket</button></a>
+				<a th:href="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticket.getTicketId()})}">
+					<button class="form-button">Pay Ticket</button>
+				</a>
 			</div>
-			<a th:href="@{/{userId}/ticket/(userId=${userId})}"><button class="form-button-cancel">Back to
-					list</button></a>
+			
+			<!-- If the ticket is paid, show the printing option -->
+			<div th:if="${ticket.status == 'Paid'}">
+				<button class="form-button" onClick="window.print(); return false;">Print Ticket</button>
+			</div>
+			
+			<a th:href="@{/{userId}/ticket/(userId=${userId})}"><button class="form-button-cancel">Back to list</button></a>
 
 		</div>
 	</div>

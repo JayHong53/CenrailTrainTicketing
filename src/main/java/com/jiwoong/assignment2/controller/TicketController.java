@@ -97,6 +97,15 @@ public class TicketController {
 			return "redirect:/{userId}/ticket/";			
 		}	
 		
+		// If the ticket is already paid
+		// This is not available option based on the application flow,
+		// but in case user just typed the address directly 
+		if (ticket.getStatus().equals("Paid")) {
+	    	model.addAttribute("userId", userId);
+	    	model.addAttribute("ticketId", ticketId);
+	    	return "ticket-thankyou"; 
+		}
+		
 		int[] years = new int[20];
 		for (int i = 0; i < 20; i++) {
 			years[i] = 2023 + i;
@@ -124,7 +133,7 @@ public class TicketController {
 			
 			return "redirect:/{userId}/ticket/";			
 		}		
-		
+				
 		boolean hasError = false;
 		
 		if (!creditCardNumber.matches("\\d{4}\\-\\d{4}\\-\\d{4}\\-\\d{4}")) {
@@ -160,6 +169,7 @@ public class TicketController {
 	    	ticketRepo.save(ticket);
 	    	
 	    	model.addAttribute("userId", userId);
+	    	model.addAttribute("ticketId", ticketId);
 	    	return "ticket-thankyou"; 
 		}
 	}

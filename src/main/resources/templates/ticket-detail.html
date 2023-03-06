@@ -1,43 +1,85 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Ticket Detail</title>
-<link rel="stylesheet" href="/css/styles.css">
+	<meta charset="UTF-8">
+	<title>Ticket Detail</title>
+	<link rel="stylesheet" href="/css/styles.css">
 
 </head>
+
 <body>
 
 	<div class="header">
 		<div class="header-title">Welcome to CenRail</div>
 	</div>
 
-	<div class="container-small">
-		<div class="form-box">
+	<div class="container-medium">
+
+		<div class="ticket-box">
 			<div class="form-title">Ticket Detail</div>
 
-			<div th:text="${passenger.getFirstname()} + ' ' + ${passenger.getLastname()}"></div>
+			<div id="ticket-border">
+				<div class="ticket-card">
+					<div class="ticket-body">
 
-			<div th:text="${journeyInfo.get('trainCode')}"></div>
-			
-			<div th:text="${journeyInfo.get('departureStn')}"></div>
-			<div th:text="${journeyInfo.get('departureDate')} + ' ' + ${journeyInfo.get('departureTime')}"></div>
-			
-			<div th:text="${journeyInfo.get('arrivalStn')}"></div>
-			<div th:text="${journeyInfo.get('arrivalDate')} + ' ' + ${journeyInfo.get('arrivalTime')}"></div>
+						<div class="route-label">Depart</div>
+						<div class="station" th:text="${journeyInfo.get('departureStn')}"></div>
+						<div class="time"
+							th:text="${journeyInfo.get('departureDate')} + ' ' + ${journeyInfo.get('departureTime')}">
+						</div>
 
-			<div th:text="'CAD ' + ${ticket.getTotalFareCurrencyFormat()}"></div>
-			<div th:text="'Status: ' + ${ticket.getStatus()}"></div>
-			
-			<!-- If the ticket is not paid, show the payment option -->
-			<div th:if="${ticket.status == 'Not Paid'}">
-				<a th:href="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticket.getTicketId()})}"><button class="form-button">Pay Ticket</button></a>		
+
+						<div class="route-label">Arrive</div>
+						<div class="station" th:text="${journeyInfo.get('arrivalStn')}"></div>
+						<div class="time"
+							th:text="${journeyInfo.get('arrivalDate')} + ' ' + ${journeyInfo.get('arrivalTime')}"></div>
+
+						<div class="train-image">
+							<img src="/image/metro.png">
+							<div class="trainCode" th:text="${journeyInfo.get('trainCode')}"></div>
+						</div>
+
+						<div class="ticket-label">Holder Name</div>
+						<div class="ticket-field">
+							<div th:text="${passenger.getFirstname()} + ' ' + ${passenger.getLastname()}"></div>
+						</div>
+
+						<div class="ticket-label">Seat Class</div>
+						<div class="ticket-field">
+							<div th:text="${ticket.getSeatClass()}"></div>
+						</div>
+
+						<div class="ticket-label">Extra Passengers</div>
+						<div class="ticket-field">
+							<div th:text="${extraPassenger}"></div>
+						</div>
+
+						<div class="ticket-label">Total Fare</div>
+						<div class="ticket-feild" th:text="'CAD ' + ${ticket.getTotalFareCurrencyFormat()}"></div>
+						<div class="ticket-status" th:text="'Ticket Status: '+ ${ticket.getStatus()}"></div>
+
+						<div class="barcode">
+							<img src="/image/barcode.gif">
+						</div>
+
+					</div>
+				</div>
 			</div>
 
-			<a th:href="@{/{userId}/ticket/(userId=${userId})}"><button class="form-button-cancel">Back to list</button></a>
+			<!-- If the ticket is not paid, show the payment option -->
+
+			<div th:if="${ticket.status == 'Not Paid'}">
+				<a
+					th:href="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticket.getTicketId()})}"><button
+						class="form-button">Pay Ticket</button></a>
+			</div>
+			<a th:href="@{/{userId}/ticket/(userId=${userId})}"><button class="form-button-cancel">Back to
+					list</button></a>
 
 		</div>
 	</div>
 
 </body>
+
 </html>

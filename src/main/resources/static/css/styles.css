@@ -227,6 +227,120 @@ body {
   margin: 15px 0 15px;
 }
 
+/* ticket design */
+.ticket-box {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 600px;
+  margin: 0 auto 15px;
+  padding: 0px 45px 45px 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 #00000020, 0 5px 5px 0 #00000025
+}
+
+#ticket-border {
+  margin: 20px 100px 20px 100px;
+	position: relative;
+  box-sizing: border-box;
+	padding: 20px;
+	border-radius: 10px;
+	background: #FAFAFA; 
+	box-shadow: 3px 3px 9px 0px #404040
+}
+
+#ticket-border::before, ::after {
+	content: "";
+	position: absolute;
+	width: 96%;
+	height: 6px;
+	left: 6px;
+}
+
+#ticket-border::before {
+	top: -6px;
+	background: radial-gradient(circle, transparent, transparent 50%, #FAFAFA 50%,
+		#FAFAFA 100%) -7px -8px/16px 16px repeat-x;
+}
+
+#ticket-border::after {
+	bottom: -6px;
+	background: radial-gradient(circle, transparent, transparent 50%, #FAFAFA 50%,
+		#FAFAFA 100%) -7px -2px/16px 16px repeat-x;
+}
+
+.ticket-card {	
+  height: 440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+	border-radius: 15px;
+ 	border: 6px solid #808080;
+}
+
+.route-label{
+  margin-top: 10px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.station {
+  font-size: 30px;
+  text-align: center;
+}
+
+.time {
+  font-size: 8px;
+  margin-bottom: 10px;
+}
+
+.train-image {
+  margin: 5px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.train-image img {
+  width: 20px;
+}
+
+.trainCode {
+  font-size: 10px;
+  font-weight:400;
+}
+
+.ticket-label {
+  margin-top: 10px;
+  font-size: 10px;
+}
+
+.passenger {
+  font-size: 18px;
+}
+
+.ticket-status {
+  margin-top: -2px;
+  margin-bottom: 25px;
+  font-size: 6px;
+}
+
+.barcode img {
+  width: 75%;
+}
+/* Ticket Design -End */
+
+/* Message */
+.thankyou-message-area {
+  margin: 25px 0px 0px 0px;
+
+}
+
+.thankyou-message-area img{
+  width: 80px;
+}
+
 .message-large {
   padding: 50px 30px 10px 30px;
   font-size: 32px;

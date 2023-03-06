@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -24,13 +25,11 @@ public class Passenger {
 	private String passengerId;
 	
 	@Column(name="email")
-	@NotNull(message="Please, provide your email")
+	@NotBlank(message="Please, provide your email")
 	@Email(message="Invalid Email format")
-	//(message="The email address is in use")
 	private String email;
 	
 	@Column(name="password")
-	@NotNull(message="Please enter your password")
 	@Size(min=8, message="Your password should be at least 8 letters")
 	private String password;
 	

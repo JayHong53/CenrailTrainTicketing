@@ -2,20 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Payment Completed</title>
 <link rel="stylesheet" href="/css/styles.css">
 
 </head>
 <body>
 
 	<div class="header">
-		<div class="header-title">Payment Completed</div>
+		<div class="header-title">Welcome to CenRail</div>
 	</div>
 
 	<div class="container-medium">
 		<div class="table-box">
 			<div class="message-large">Thank you for choosing CenRail</div>
-			<div class="message-small">We hope you have a pleasant journey!</div>
+			<div class="thankyou-message-area">
+				<img src="/image/conductor.png">
+				<div class="message-small">We hope you have a pleasant journey!</div>
+			</div>
 			
 			<a th:href="@{/{userId}(userId=${userId})}"><button class="form-button">Back to main</button></a>
 		</div>

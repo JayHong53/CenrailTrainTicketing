@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Payment</title>
 <link rel="stylesheet" href="/css/styles.css">
 
 </head>
 <body>
 	<div class="header">
-		<div class="header-title">Pay Ticket</div>
+		<div class="header-title">Welcome to CenRail</div>
 	</div>	
 
 	<div class="container-small">
@@ -18,10 +18,10 @@
 			<form th:action="@{/{userId}/ticket/{ticketId}/payticket(userId=${userId}, ticketId=${ticketId})}" method="post">
 				<div class="result-fare" th:text="'CAD '+ ${ticket.getTotalFareCurrencyFormat()}" ></div>		
 
-				<input type="text" name="creditCardNumber" placeholder="Credit Card Number" maxlength="16" required>
+				<input type="text" name="creditCardNumber" placeholder="Credit Card Number" maxlength="19">
 				<div class="errorMessage-form" th:text="${errorMsgCredit}"></div>
 
-				<input type="text" name="holderName" placeholder="Holder Name" required>
+				<input type="text" name="holderName" placeholder="Holder Name">
 				<div class="errorMessage-form" th:text="${errorMsgName}"></div>
 
 				<div class="form-label">Valid Before</div>

@@ -61,6 +61,11 @@ public class JourneyController {
 //	=================================================	
 	@GetMapping("/plan-trip")
 	public String getPlanTrip(@PathVariable String userId, Model model, Journey journey) {
+		Passenger passenger = passengerRepo.findByPassengerId(userId);
+		if (passenger == null) {
+			return "redirect:/";
+		}
+		
 		model.addAttribute("userId", userId);
 		return "plan-trip";
 	}
@@ -71,6 +76,11 @@ public class JourneyController {
 	@PostMapping("/plan-trip")
 	public String postPlanTrip(@PathVariable String userId, Model model, @Valid Journey journey, BindingResult result,
 			String departureStn, String arrivalStn) {
+		Passenger passenger = passengerRepo.findByPassengerId(userId);
+		if (passenger == null) {
+			return "redirect:/";
+		}
+				
 		// Validate route
 		if (departureStn.equals(arrivalStn)) {
 			result.rejectValue("departureStn", "error.journey", "Invalid Journey: Please pick a different station");
@@ -99,7 +109,12 @@ public class JourneyController {
 	@PostMapping("/plan-trip-detail")
 	public String postPlanTripDetail(@PathVariable String userId, Model model, @Valid Journey journey,
 			BindingResult result, String trainCode) {
-
+		
+		Passenger passenger = passengerRepo.findByPassengerId(userId);
+		if (passenger == null) {
+			return "redirect:/";
+		}
+		
 		model.addAttribute("trainCode", trainCode);
 		model.addAttribute("journey", journey);
 		model.addAttribute("trainSchedule", trainSchedule);
@@ -113,6 +128,12 @@ public class JourneyController {
 	@PostMapping("/plan-trip-summary")
 	public String postPlanTripSummary(@PathVariable String userId, Model model, @Valid Journey journey,
 			BindingResult result, String seatClass, int extraSeat, int extraDiscountedSeat) {
+	
+		Passenger passenger = passengerRepo.findByPassengerId(userId);
+		if (passenger == null) {
+			return "redirect:/";
+		}
+		
 		// Save Travel Distance
 		int travelDistance = trainSchedule.getDistance(journey.getDepartureStn(), journey.getArrivalStn());
 		journey.setTravelDistance(travelDistance);
@@ -120,7 +141,6 @@ public class JourneyController {
 		journeyRepo.save(journey);
 
 		Ticket ticket = new Ticket();
-		Passenger passenger = passengerRepo.findByPassengerId(userId);
 
 		ticket.setPassenger(passenger);
 		ticket.setJourney(journey);
@@ -146,9 +166,8 @@ public class JourneyController {
 	@GetMapping("/update-profile")
 	public String getUpdateProfile(@PathVariable String userId, Model model) {
 
-		Passenger passenger = passengerRepo.findByPassengerId(userId);
-
 		// If userId is not valid, redirect user to the main page
+		Passenger passenger = passengerRepo.findByPassengerId(userId);
 		if (passenger == null) {
 			return "redirect:/";
 		}
@@ -164,7 +183,7 @@ public class JourneyController {
 			BindingResult result) {
 		
 		// Password is not passed, so error count should be 1 if everything is validated
-		if (result.getErrorCount() > 1) {
+		if (result.getErrorCount() >= 1) {
 							
 			model.addAttribute("userId", userId);
 			return "update-profile";
@@ -172,6 +191,10 @@ public class JourneyController {
 		} else {
 			
 			Passenger existingPassenger = passengerRepo.findByPassengerId(userId);
+			if (existingPassenger == null) {
+				return "redirect:/";
+			}
+			
 			existingPassenger.setFirstname(passenger.getFirstname());
 			existingPassenger.setLastname(passenger.getLastname());
 			existingPassenger.setGender(passenger.getGender());

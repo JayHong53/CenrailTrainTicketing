@@ -6,21 +6,26 @@
 <title>Register</title>
 </head>
 <body>
+
+	<div class="header">
+		<div class="header-title">Welcome to CenRail</div>
+	</div>
+
 	<div class="container-small">
 		<div class="form-box">
 			<div class="form-title">Register Page</div>
 			<form class='login-form' th:action="@{/register}" th:object="${passenger}" method="post">
 
-				<input type='text' th:field="*{email}" placeholder='Email' name="email" required/>
+				<input type='text' th:field="*{email}" placeholder='Email' name="email" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 
-				<input type="password" th:field=*{password} placeholder='Password' name="password" required/>
+				<input type="password" th:field=*{password} placeholder='Password' name="password" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 
-				<input type="text" th:field=*{firstname} placeholder='FirstName' name="firstname" required/>
+				<input type="text" th:field=*{firstname} placeholder='FirstName' name="firstname" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
 
-				<input type="text" th:field=*{lastname} placeholder='LastName' name="lastname" required/>
+				<input type="text" th:field=*{lastname} placeholder='LastName' name="lastname" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
 
 				<!-- Gender -->
@@ -37,13 +42,13 @@
 				<input type="number" th:field=*{age} name="age" required/>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
 
-				<input type="text" th:field=*{phone} placeholder='Phone - ex)111-222-3333' name="phone" required/>
+				<input type="text" th:field=*{phone} placeholder='Phone (111-222-3333)' name="phone" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
 
-				<input type="text" th:field=*{street} placeholder='StreetAddress' name="street" required/>
+				<input type="text" th:field=*{street} placeholder='StreetAddress' name="street" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></div>
 
-				<input type="text" th:field=*{city} placeholder='City' name="city" required/>
+				<input type="text" th:field=*{city} placeholder='City' name="city" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></div>
 
 				<!-- Province -->
@@ -66,7 +71,7 @@
 				</select>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('province')}" th:errors="*{province}"></div>				
 
-				<input type="text" th:field=*{postal} placeholder='PostalCode' name="postal" required/>
+				<input type="text" th:field=*{postal} placeholder='PostalCode' name="postal" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('postal')}" th:errors="*{postal}"></div>
 
 

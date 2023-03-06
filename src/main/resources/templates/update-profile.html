@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/css/styles.css">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/css/styles.css">
+	<title>Update Profile</title>
 </head>
+
 <body>
+
+	<div class="header">
+		<div class="header-title">Welcome to CenRail</div>
+	</div>
+
 	<div class="container-small">
 		<div class="form-box">
 			<div class="form-title">Update Profile</div>
-			<form class='login-form' th:action="@{/{userId}/update-profile(userId = ${userId})}" th:object="${passenger}" method="post">
+			<form class='login-form' th:action="@{/{userId}/update-profile(userId = ${userId})}"
+				th:object="${passenger}" method="post">
 
 				<div class="form-label">Email</div>
-				<input type='text' th:field="*{email}" name="email" readonly/>
+				<input type='text' th:field="*{email}" name="email" readonly />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-				
+
 				<div class="form-label">Firstname</div>
-				<input type="text" th:field=*{firstname} name="firstname" required/>
+				<input type="text" th:field=*{firstname} name="firstname" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></div>
 
 				<div class="form-label">Lastname</div>
-				<input type="text" th:field=*{lastname} name="lastname" required/>
+				<input type="text" th:field=*{lastname} name="lastname" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></div>
 
 				<!-- Gender -->
@@ -29,24 +37,24 @@
 					<option value="" th:text="Gender"></option>
 					<option value="Male" th:text="Male"></option>
 					<option value="Female" th:text="Female"></option>
-					<option value="X" th:text="X"></option>				
+					<option value="X" th:text="X"></option>
 				</select>
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
 
 				<div class="form-label">Age</div>
-				<input type="number" th:field=*{age} name="age" required/>
+				<input type="number" th:field=*{age} name="age" required />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
 
 				<div class="form-label">Phone</div>
-				<input type="text" th:field=*{phone} name="phone" required/>
+				<input type="text" th:field=*{phone} name="phone" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
 
 				<div class="form-label">Street</div>
-				<input type="text" th:field=*{street} name="street" required/>
+				<input type="text" th:field=*{street} name="street" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></div>
 
 				<div class="form-label">City</div>
-				<input type="text" th:field=*{city} name="city" required/>
+				<input type="text" th:field=*{city} name="city" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></div>
 
 				<!-- Province -->
@@ -64,29 +72,18 @@
 					<option value="ON" th:text="Ontario"></option>
 					<option value="PE" th:text="'Prince Edward Island'"></option>
 					<option value="QC" th:text="Quebec"></option>
-					<option value="SK" th:text="Saskatchewan"></option>					
+					<option value="SK" th:text="Saskatchewan"></option>
 					<option value="YT" th:text="Yukon"></option>
 				</select>
-				<div class="errorMessage-form" th:if="${#fields.hasErrors('province')}" th:errors="*{province}"></div>				
+				<div class="errorMessage-form" th:if="${#fields.hasErrors('province')}" th:errors="*{province}"></div>
 
 				<div class="form-label">Postal</div>
-				<input type="text" th:field=*{postal} name="postal" required/>
+				<input type="text" th:field=*{postal} name="postal" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('postal')}" th:errors="*{postal}"></div>
 
 				<button class=form-button type="submit">Update Profile</button>
-
-				<a th:href="@{/{userId}(userId = ${userId})}"><button class="form-button-cancel">Cancel Update</button></a>
 			</form>
+			<a th:href="@{/{userId}(userId = ${userId})}"><button class="form-button-cancel">Cancel Update</button></a>
 		</div>
 	</div>
-	<!-- 	<form action="#" th:action="@{/add}" th:object="${department}" method="post">
-
-    <label for="deptname">Department Name</label>
-
-    <input type="text" th:field="*{deptname}" id="deptname" placeholder="Department Name">
-
-    <span th:if="${#fields.hasErrors('deptname')}" th:errors="*{deptname}"></span>
-
-    </br>
-</body> -->
 </html>

@@ -54,15 +54,21 @@ public class TicketController {
 		// Invalid TicketId => Redirect to Ticket list
 		Ticket ticket = ticketRepo.findByTicketId(ticketId);
 		if (ticket == null) {
-			
-			return "redirect:/{userId}/ticket/";
-				
+			return "redirect:/{userId}/ticket/";		
 		}	
 		
-		
+		// Getting Model Attributes
 		TrainSchedule trainSchedule = new TrainSchedule();
 		HashMap<String, String> journeyInfo = trainSchedule.getDetailedJourneyStringMap(ticket.getJourney());
 		
+		String extraPassenger;
+		if (ticket.getExtraSeat() == 0 && ticket.getExtraDiscountedSeat() == 0) {
+			extraPassenger = "None";
+		} else {
+			extraPassenger = "Regular: " + ticket.getExtraSeat() + ", Discounted: " + ticket.getExtraDiscountedSeat();
+		}
+		
+		model.addAttribute("extraPassenger", extraPassenger);	
 		model.addAttribute("passenger", ticket.getPassenger());
 		model.addAttribute("journeyInfo", journeyInfo);
 		model.addAttribute("ticket", ticket);
@@ -108,8 +114,13 @@ public class TicketController {
 		
 		boolean hasError = false;
 		
-	    if (!creditCardNumber.matches("\\d{16}")) {
+		if (!creditCardNumber.matches("\\d{4}\\-\\d{4}\\-\\d{4}\\-\\d{4}")) {
 	    	model.addAttribute("errorMsgCredit", "Invalid Credit Card Number");
+	    	hasError = true;
+	    }
+	    
+	    if (holderName.equals("")) {
+	    	model.addAttribute("errorMsgName", "Please enter the card holder's name");
 	    	hasError = true;
 	    }
 	    

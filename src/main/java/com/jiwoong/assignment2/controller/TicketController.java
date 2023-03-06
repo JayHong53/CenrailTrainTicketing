@@ -30,6 +30,10 @@ public class TicketController {
 	@Autowired
 	private TicketRepository ticketRepo;
 		
+
+//	=================================================
+//	Main - GET
+//	=================================================	
 	@GetMapping("/")
 	public String getTicketList(@PathVariable String userId, Model model) {
 		
@@ -47,7 +51,10 @@ public class TicketController {
 		
 		return "ticket-list";
 	}
-	
+
+//	=================================================
+//	Ticket Detail - GET
+//	=================================================		
 	@GetMapping("/{ticketId}")
 	public String getTicketDetail(@PathVariable String userId, @PathVariable String ticketId, Model model) {
 		
@@ -76,7 +83,10 @@ public class TicketController {
 		
 		return "ticket-detail";
 	} 
-	
+
+//	=================================================
+//	Pay Ticket - GET
+//	=================================================		
 	@GetMapping("/{ticketId}/payticket")
 	public String getPayTicket(@PathVariable String userId, @PathVariable String ticketId, Model model) {
 		
@@ -102,6 +112,9 @@ public class TicketController {
 		return "ticket-pay";
 	}
 	
+//	=================================================
+//	Pay Ticket - POST
+//	=================================================		
 	@PostMapping("/{ticketId}/payticket")
 	public String postPayTicket(@PathVariable String userId, @PathVariable String ticketId, Model model, String creditCardNumber, String holderName) {
 		

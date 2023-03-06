@@ -23,9 +23,10 @@ body {
   color: #FFFFFF;
   font-size: 15px;
   font-weight: 500;
-}
+} /* Header Styling -END */
 
-/* Containers */
+
+/* Containers  */
 .container-small {
   width: 400px;
   margin-top: 50px;
@@ -45,13 +46,21 @@ body {
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
-}
+} /* Containers -END */
+
 
 /* register link */
 .register-link {
-  color: #000000; 
   text-align: center;
 }
+
+.register-link a {
+  color: #000000; 
+  font-size: 14px;
+  font-style: normal;
+  text-decoration: none;
+}
+
 
 /* table styling -start */
 .table-box {
@@ -80,7 +89,7 @@ body {
   background-color: #0D453E;
   color: white;
   text-transform: uppercase;
-  text-align: left;
+  text-align: center;
   font-size: 13px;
 }
 
@@ -112,9 +121,7 @@ body {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
-}
-
-/* Table Styling -End */
+} /* Table Styling -END */
 
 /* Form Styling start */
 .form-title {
@@ -220,12 +227,7 @@ body {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
-}
-
-.result-fare {
-  font-size: 35px;
-  margin: 15px 0 15px;
-}
+} /* Form Styling - END */
 
 /* ticket design */
 .ticket-box {
@@ -328,10 +330,14 @@ body {
 
 .barcode img {
   width: 75%;
-}
-/* Ticket Design -End */
+} /* Ticket Design -End */
 
-/* Message */
+/* Messages, Etc */
+.result-fare {
+  font-size: 35px;
+  margin: 15px 0 15px;
+}
+
 .thankyou-message-area {
   margin: 25px 0px 0px 0px;
 
@@ -351,61 +357,4 @@ body {
   padding-bottom: 15px;
   font-size: 16px;
   font-style: italic;
-}
-
-/* Result Page Text Styling */
-
-/* #review-textarea {
-  height: 100px;
-  resize: none;
-  vertical-align: middle;
-} 
-
-.result-message {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.result-course {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.result-review-card {
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.result-review {
-  font-size: 16px;
-  font-style: italic;
-  margin: 15px;
-}
-
-.result-user {
-  font-size: 12px;
-  font-style: italic;
-  margin-bottom: 10px;
-} */
-
-/* .form-box-review {
-  position: relative;
-  z-index: 1;
-  background: #FFFFFF;
-  max-width: 400px;
-  margin: 0 auto 100px;
-  padding: 0px 45px 45px 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 #00000020, 0 5px 5px 0 #00000025
-}
-
-.form-box-result {
-  position: relative;
-  z-index: 1;
-  background: #FFFFFF;
-  max-width: 400px;
-  margin: 0 auto 100px;
-  padding: 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 #00000020, 0 5px 5px 0 #00000025
-} */
+} /* Messages, Etc - END */

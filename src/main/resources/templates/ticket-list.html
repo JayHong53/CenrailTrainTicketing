@@ -46,14 +46,13 @@
 
 				<a th:href="@{/{userId}(userId = ${userId})}"><button class="form-button-cancel">Back to main</button></a>
 
+			<!-- No Tickets -->
 			</div>
 			<div th:unless="${!tickets.isEmpty()}">
-
-					<div class="message-small">You have no tickets</div>
+					<div class="message-small">You currently have no tickets</div>
 
 					<a th:href="@{/{userId}/plan-trip(userId=${userId})}"><button class="form-button">Plan Your Trip</button></a><br>
 					<a th:href="@{/{userId}(userId = ${userId})}"><button class="form-button-cancel">Back to main</button></a>
-
 			</div>
 		</div>
 	</div>

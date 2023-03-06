@@ -74,19 +74,9 @@
 				<input type="text" th:field=*{postal} placeholder='PostalCode' name="postal" />
 				<div class="errorMessage-form" th:if="${#fields.hasErrors('postal')}" th:errors="*{postal}"></div>
 
-
 				<button class="form-button" type="submit">Register</button>
 			</form>
 		</div>
 	</div>
-	<!-- 	<form action="#" th:action="@{/add}" th:object="${department}" method="post">
-
-    <label for="deptname">Department Name</label>
-
-    <input type="text" th:field="*{deptname}" id="deptname" placeholder="Department Name">
-
-    <span th:if="${#fields.hasErrors('deptname')}" th:errors="*{deptname}"></span>
-
-    </br>
-</body> -->
+</body>
 </html>
